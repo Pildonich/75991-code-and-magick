@@ -8,8 +8,8 @@ var GAP = 10;
 var BAR_Y = 240;
 var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
-var BAR_SPACE = BAR_WIDTH + 50;
-var BAR_X = CLOUD_X + BAR_WIDTH;
+var BAR_SPACE =  50;
+
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -51,13 +51,14 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
     ctx.fillStyle = '#000000';
-    ctx.fillText(names[i], BAR_X + BAR_SPACE * i, BAR_Y + GAP);
-    ctx.fillText(Math.round(times[i]), BAR_X + BAR_SPACE * i, (BAR_Y - (BAR_HEIGHT * times[i]) / maxTime) - GAP * 2);
+    var BAR_X = CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_SPACE) * i;
+    ctx.fillText(names[i], BAR_X, BAR_Y + GAP);
+    ctx.fillText(Math.round(times[i]), BAR_X, (BAR_Y - (BAR_HEIGHT * times[i]) / maxTime) - GAP * 2);
     ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-    ctx.fillRect(BAR_X + BAR_SPACE * i, BAR_Y, BAR_WIDTH, ((BAR_HEIGHT * times[i]) / maxTime) * -1);
+    ctx.fillRect(BAR_X, BAR_Y, BAR_WIDTH, ((BAR_HEIGHT * times[i]) / maxTime) * -1);
   }
 };
 
