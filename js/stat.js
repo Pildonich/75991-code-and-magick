@@ -27,7 +27,7 @@ var renderText = function (ctx, text, x, y, font, color) {
   ctx.fillStyle = color;
   ctx.textBaseline = 'hanging';
   ctx.fillText(text, x, y);
-}
+};
 
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
