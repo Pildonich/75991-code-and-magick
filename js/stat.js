@@ -8,8 +8,7 @@ var GAP = 10;
 var BAR_Y = 240;
 var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
-var BAR_SPACE =  50;
-
+var BAR_SPACE = 50;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
