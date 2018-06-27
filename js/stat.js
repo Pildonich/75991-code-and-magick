@@ -49,15 +49,15 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    ctx.fillStyle = '#000000';
     var BAR_X = CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_SPACE) * i;
-    ctx.fillText(names[i], BAR_X, BAR_Y + GAP);
-    ctx.fillText(Math.round(times[i]), BAR_X, (BAR_Y - (BAR_HEIGHT * times[i]) / maxTime) - GAP * 2);
+    var ratioBar = (BAR_HEIGHT * times[i]) / maxTime;
+    renderText(ctx, names[i], BAR_X, BAR_Y + GAP);
+    renderText(ctx, Math.round(times[i]), BAR_X, BAR_Y - ratioBar - GAP * 2);
     ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-    ctx.fillRect(BAR_X, BAR_Y, BAR_WIDTH, ((BAR_HEIGHT * times[i]) / maxTime) * -1);
+    ctx.fillRect(BAR_X, BAR_Y, BAR_WIDTH, ratioBar * -1);
   }
 };
 
