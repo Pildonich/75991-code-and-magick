@@ -54,19 +54,19 @@ var getRandomNumber = function (arr) {
 
 var renderWizard = function () {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  if (Math.random()>0.5) {
+  if (Math.random() > 0.5) {
     wizardElement.querySelector('.setup-similar-label').textContent = names[getRandomNumber(names)] + ' ' + lastNames[getRandomNumber(lastNames)];
   } else {
     wizardElement.querySelector('.setup-similar-label').textContent = lastNames[getRandomNumber(lastNames)] + ' ' + names[getRandomNumber(names)];
   }
-  //wizardElement.querySelector('.setup-similar-label').textContent = names[getRandomNumber(names)] + ' ' + lastNames[getRandomNumber(lastNames)];
+  //  wizardElement.querySelector('.setup-similar-label').textContent = names[getRandomNumber(names)] + ' ' + lastNames[getRandomNumber(lastNames)];
   wizardElement.querySelector('.wizard-coat').style.fill = coatColors[getRandomNumber(coatColors)];
   wizardElement.querySelector('.wizard-eyes').style.fill = eyesColors[getRandomNumber(eyesColors)];
 
   return wizardElement;
 };
 
-// На основе данных, созданных в предыдущем пункте и шаблона #similar-wizard-template создайте DOM-элементы, 
+// На основе данных, созданных в предыдущем пункте и шаблона #similar-wizard-template создайте DOM-элементы,
 // соответствующие случайно сгенерированным волшебникам и заполните их данными из массива:
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
