@@ -1,10 +1,5 @@
 'use strict';
 
-// Покажите блок .setup, убрав в JS-коде у него класс .hidden.
-
-var setup = document.querySelector('.setup');
-setup.classList.remove('hidden');
-
 var names = [
   'Иван',
   'Хуан Себастьян',
@@ -44,13 +39,13 @@ var eyesColors = [
   'green'
 ];
 
-// функция генерации случайного числа (данных)
+var removeHidden = function (querySelector) {
+  document.querySelector(querySelector).classList.remove('hidden');
+};
 
 var getRandomNumber = function (arr) {
   return Math.floor(Math.random() * arr.length);
 };
-
-// функция создания объекта
 
 var renderWizard = function () {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -59,26 +54,27 @@ var renderWizard = function () {
   } else {
     wizardElement.querySelector('.setup-similar-label').textContent = lastNames[getRandomNumber(lastNames)] + ' ' + names[getRandomNumber(names)];
   }
-  //  wizardElement.querySelector('.setup-similar-label').textContent = names[getRandomNumber(names)] + ' ' + lastNames[getRandomNumber(lastNames)];
   wizardElement.querySelector('.wizard-coat').style.fill = coatColors[getRandomNumber(coatColors)];
   wizardElement.querySelector('.wizard-eyes').style.fill = eyesColors[getRandomNumber(eyesColors)];
 
   return wizardElement;
 };
 
-// На основе данных, созданных в предыдущем пункте и шаблона #similar-wizard-template создайте DOM-элементы,
-// соответствующие случайно сгенерированным волшебникам и заполните их данными из массива:
+var createList = function () {
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < 4; i++) {
+    fragment.appendChild(renderWizard());
+  }
+
+  return fragment;
+};
+
+removeHidden('.setup');
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content.querySelector('.setup-similar-item');
 
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < 4; i++) {
-  fragment.appendChild(renderWizard());
-}
-// Отрисуйте сгенерированные DOM-элементы в блок .setup-similar-list. Для вставки элементов используйте DocumentFragment
 var similarListElement = document.querySelector('.setup-similar-list');
-similarListElement.appendChild(fragment);
+similarListElement.appendChild(createList());
 
-// Покажите блок .setup-similar, удалив у него CSS-класс hidden
-document.querySelector('.setup-similar').classList.remove('hidden');
+removeHidden('.setup-similar');
